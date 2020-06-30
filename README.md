@@ -29,9 +29,9 @@ Após clonar o repositório, instalar as dependências:
 npm install
 ```
 
-Renomear o arquivo .env.example para .env e inserir a senha do banco de dados (substituir "SENHA" pela senha do banco de dados MySQL) e adicionar a chave do Google Geocoding API no lugar de "CHAVE" ou crie o arquivo com o comando, substituindo os valores indicados:
+Renomear o arquivo .env.example para .env e inserir a senha do banco de dados (substituir "SENHA" pela senha do banco de dados MySQL), adicionar a chave do Google Geocoding API no lugar de "CHAVE" e inserir a porta que deseja utilizar no lugar de "PORTA" ou crie o arquivo com o comando, substituindo os valores indicados:
 ```
-echo -e "DB_PASS=SENHA\nAPI_KEY=CHAVE" > .env
+echo -e "DB_PASS=SENHA\nAPI_KEY=CHAVE\nPORT=PORTA" > .env
 ```
 
 Criar o banco de dados com o Sequelize:
@@ -49,7 +49,7 @@ Executar as seeders com o Sequelize:
 npx sequelize db:seed:all
 ```
 
-Para inicializar o servidor na porta 3000 do localhost, use o comando:
+Para inicializar o servidor na porta do localhost que foi inserida no .env, use o comando:
 ```
 npx start
 ```
@@ -59,7 +59,7 @@ npm start
 ```
 
 ## Acessível pelo link:
-- [mobmap](https://mobmapproducao.herokuapp.com/)
+- [MobMap.me](https://mobmap.me/)
 
 
 ## Grupo
