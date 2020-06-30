@@ -2,6 +2,9 @@
 
 <img src="/public/images/wesley_logo_novo_azul.png" width="30%">
 
+## Acessível pelo link:
+- [MobMap.me](http://mobmap.me/)
+
 ## Descrição
 
 MobMap é um sistema Web com o intuito de mapear pontos na cidade que dificultam a mobilidade urbana de pessoas com mobilidade reduzida, como buracos na via que dificultam a passagem para um idoso ou um poste no meio da calçada que impede um cadeirante de passar, atráves do relato de problemas pelo usuário. 
@@ -57,10 +60,6 @@ ou
 ```
 npm start
 ```
-
-## Acessível pelo link:
-- [MobMap.me](https://mobmap.me/)
-
 
 ## Grupo
 
