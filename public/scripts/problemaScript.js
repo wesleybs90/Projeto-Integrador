@@ -9,6 +9,9 @@ let alertaBaixo = document.getElementById('alertaBaixo');
 let inputLongitude = document.getElementById('inputLongitude');
 let inputLatitude = document.getElementById('inputLatitude');
 let apiKey = document.getElementById('apiKey');
+let fotoInput = document.querySelector('input[type=file]');
+let submitInput = document.querySelector('input[type=submit]');
+let fotoComprimida = document.getElementById('fotoComprimida');
 
 let camposObrigatorios = [
     document.querySelectorAll('input[type=radio]'),
@@ -195,6 +198,51 @@ async function converteParaGeo(endereco, lat, lng) {
     lng.value = dados.results[0].geometry.location.lng;
     lat.value = dados.results[0].geometry.location.lat;
 }
+
+//Script para compressão das imagens
+async function handleImageUpload(event) {
+ 
+    const imageFile = event.target.files[0];
+    console.log('originalFile instanceof Blob', imageFile instanceof Blob); // true
+    console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+   
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true
+    }
+    try {
+      const compressedFile = await imageCompression(imageFile, options);
+      console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+      console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+   
+      await atualizaImagem(compressedFile); // write your own logic
+    } catch (error) {
+      console.log(error);
+    }
+   
+}
+
+function atualizaImagem(compressedFile) {
+    const fotoNova = new File([compressedFile], compressedFile.name, {
+        type: compressedFile.type,
+        lastModified: compressedFile.lastModified
+    });
+    fotoComprimida.files = createFileList(fotoNova);
+    fotoComprimida.hidden = true;
+}
+
+function createFileList(a) {
+    a = [].slice.call(Array.isArray(a) ? a : arguments)
+    for (var c, b = c = a.length, d = !0; b-- && d;) d = a[b] instanceof File
+    if (!d) throw new TypeError('expected argument to FileList is File or array of File objects')
+    for (b = (new ClipboardEvent('')).clipboardData || new DataTransfer; c--;) b.items.add(a[c])
+    return b.files
+}
+
+submitInput.addEventListener('click', function () {
+    fotoInput.value = '';
+});
 
 //Verifica se todos os campos com required foram preenchidos, caso positivo abre modal
 enviarBotao.addEventListener("click", function () {

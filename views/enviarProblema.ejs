@@ -138,7 +138,8 @@
             <h2 class="ml-0">3 - Imagem do problema</h2>
             <p class="mb-3">Adicionar Imagem</p>
               <div class="row">
-                <input type="file" class="ml-3" name="foto">
+                <input type="file" class="ml-3" name="foto" accept="image/*" onchange="handleImageUpload(event);">
+                <input type="file" name="fotoComprimida" id="fotoComprimida" hidden>
               </div>
             </div>
           </div>
