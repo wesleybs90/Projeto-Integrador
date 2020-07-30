@@ -70,13 +70,15 @@ function pegarGeolocation(){
             carregaProblemas(latlng, mapa);
         })
     }
+    console.log('aqui')
+    carregaProblemas(mapa.getCenter(), mapa);
 }
 
 pegarGeolocation();
 let latlngUsuario = mapa.getCenter();
 
 //Atualiza problemas ao mover o mapa
-let moveuInicial = false;
+// let moveuInicial = false;
 // mapa.on('moveend', function () {
 //     if (moveuInicial === false) {
 //         return moveuInicial = true;
@@ -336,7 +338,7 @@ function cliqueMarcador(i, mapa, marcador) {
         lerMais(i);
         
         mapa.panTo(latlngNovo);
-        moveuInicial = false;
+        // moveuInicial = false;
     });
 }
 
@@ -354,7 +356,7 @@ function cliqueResultado(i, mapa, marcador, divElem) {
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
         mapa.panTo(latlngNovo);
-        moveuInicial = false;
+        // moveuInicial = false;
     });
 }
 
@@ -377,7 +379,7 @@ async function carregaProblemas(latlng, mapa){
     
     limpaMarcadores(mapa, arrayMarcadores, resultadoPesquisa);
 
-    moveuInicial = false;
+    // moveuInicial = false;
     mapa.panTo([latlng.lat, latlng.lng]);
 
     //Solicita o request de envio dos dados
